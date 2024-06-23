@@ -1,0 +1,24 @@
+{% block body %}
+    <h2>Title: {{ blog.title }}</h2>
+    <h6>Date: {{ blog.createdAt }}</h6>
+    <h4>Description: {{ blog.description }}</h4>
+    <h4>Email: {{ blog.user.email }}</h4>
+    <p>Content: {{ blog.content }}</p>
+    {% if blog.comments|length > 0 %}
+        <h2>Comments:</h2>
+        <ul>
+            {% for comment in blog.comments %}
+                <li>
+                    <p>Content: {{ comment.content }}</p>
+                    <p>Email: {{ comment.user.email }}</p>
+                    <p>Date: {{ comment.createdAt }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>Add Comment</h2>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button value="Submit" type="submit">Submit Comment</button>
+    {{ form_end(form) }}
+{% endblock %}

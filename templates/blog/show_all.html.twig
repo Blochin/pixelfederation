@@ -1,0 +1,19 @@
+{% block body %}
+    <h1>All Blogs</h1>
+    <a href="{{ path('blog_create') }}"><h1>Create Blog</h1></a>
+    {% for blog in pagination.items %}
+        <div>
+            <h2>Title: {{ blog.title }}</h2>
+            <h6>Date: {{ blog.createdAt }}</h6>
+            <h4>Description: {{ blog.description }}</h4>
+            <h4>Email: {{ blog.user.email }}</h4>
+            <p>Content: {{ blog.content }}</p>
+            <p><a href="{{ path('blog_show', { id: blog.id }) }}">Read more</a></p>
+        </div>
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    {% else %}
+        <p>No blogs found.</p>
+    {% endfor %}
+{% endblock %}
